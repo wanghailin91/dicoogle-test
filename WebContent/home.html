@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title></title>
+
+        <link rel="stylesheet" href="css/home.css" />
+        <link type="text/css" href="css/jqm-datebox.min.css" rel="stylesheet" />
+         <link rel="icon" href="css/images/favicon.ico" />
+        <link rel="apple-touch-icon" href="i-ovm.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="touch-icon-ipad.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="touch-icon-iphone-retina.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="touch-icon-ipad-retina.png" />
+        <!-- NOTE: Script load order is significant! -->
+        <script src="js/JqueryMobile-mini/jquery.min.js"></script>
+        <script>
+            $(document).bind( 'mobileinit', function(){
+                $.mobile.loadingMessageTheme = 'a';
+                $.mobile.loadingMessageTextVisible = true;
+                $.mobile.loadingMessage = "Loading...";
+            });</script>
+        <script src="js/JqueryMobile-mini/jquery.mobile-1.1.1.min.js"></script>
+        <script src="js/Mobile-UI/home.js"></script>
+        <link href="css/mobiscroll.custom-2.5.0.min.css" rel="stylesheet" type="text/css" />
+        <script src="js/Mobile-UI/mobiscroll.custom-2.5.0.min.js" type="text/javascript"></script>
+        <script src="js/Controls/Rasterhandlers.js"></script>
+        <script src="js/ioviyam/home.js"></script>
+        <link rel="stylesheet" href="css/jquery.mobile-1.1.1.min.css" />
+        <script src="js/Controls/date.js"></script>
+        <style>
+
+            .stl{-moz-border-radius: 15px;
+                 -webkit-border-radius: 15px;
+                 border-radius: 15px;
+                 border: 2px solid;
+            }
+            .brderBtmclr{
+                border-bottom:  1px solid #AAAAAA;
+            }
+            .brderBtmclrfirst{
+                border-bottom:  2px solid grey;
+                -webkit-border-top-left-radius: 15px;
+                -webkit-border-top-right-radius: 15px;
+                -moz-border-radius-topleft: 15px;
+                -moz-border-radius-topright: 15px;
+                border-top-left-radius: 15px;
+                border-top-right-radius: 15px;
+
+            }
+            .brderBtmclrend{
+                /*                border-bottom:  1px solid grey;*/
+                -webkit-border-bottom-left-radius:  15px;
+                -webkit-border-bottom-right-radius: 15px;
+                -moz-border-radius-bottomleft: 15px;
+                -moz-border-radius-bottomright: 15px;
+                border-bottom-left-radius: 15px;
+                border-bottom-right-radius: 15px;
+
+            }
+            .grdiv{
+                border-bottom:  1px solid #000;
+                background-image: linear-gradient(bottom, rgb(71,70,71) 69%);
+                background-image: -o-linear-gradient(bottom, rgb(71,70,71) 69%);
+                background-image: -moz-linear-gradient(bottom, rgb(71,70,71) 69%);
+                background-image: -webkit-linear-gradient(bottom, rgb(71,70,71) 69%);
+                background-image: -ms-linear-gradient(bottom, rgb(71,70,71) 69%);
+
+                background-image: -webkit-gradient(
+                    linear,
+                    left bottom,
+                    left top,
+                    color-stop(0.69, rgb(71,70,71))
+                    );
+
+            }
+            .toolbarclr{
+                background: -moz-linear-gradient(top,  rgba(0,0,0,0.09) 0%, rgba(0,0,0,0.09) 1%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.09)), color-stop(1%,rgba(0,0,0,0.09)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+                background: -webkit-linear-gradient(top,  rgba(0,0,0,0.09) 0%,rgba(0,0,0,0.09) 1%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+                background: -o-linear-gradient(top,  rgba(0,0,0,0.09) 0%,rgba(0,0,0,0.09) 1%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
+                background: -ms-linear-gradient(top,  rgba(0,0,0,0.09) 0%,rgba(0,0,0,0.09) 1%,rgba(0,0,0,0) 100%); /* IE10+ */
+                background: linear-gradient(to bottom,  rgba(0,0,0,0.09) 0%,rgba(0,0,0,0.09) 1%,rgba(0,0,0,0) 100%); /* W3C */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#17000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+
+            }
+            .ui-page { background: gray;}
+            a:-webkit-any-link{
+                color: gray !important;;
+                text-decoration:none !important;
+            }
+
+            .footerContainer{
+                width:97%;
+
+                border:none;
+                position:relative;
+            }
+
+
+            /*
+                        .ui-btn-corner-all {
+                            -moz-border-radius: 0;
+                            -webkit-border-radius: 0;
+                            border-radius: 0;
+                        }
+                        .ui-bar-a .ui-shadow,
+                        .ui-bar-b .ui-shadow ,
+                        .ui-bar-c .ui-shadow  {
+                            -moz-box-shadow: 0px 1px 0                 rgba(255,255,255,.3);
+                            -webkit-box-shadow: 0px 1px 0             rgba(255,255,255,.3);
+                            box-shadow: 0px 1px 0                     rgba(255,255,255,.3);
+                        }*/
+            /*            #configinit{
+                            border:2px solid;
+                            border-radius:25px;
+                            -moz-border-radius:25px;
+                        }*/
+            #btnLogout{
+                border:2px solid;
+                border-radius:25px;
+                -moz-border-radius:25px;
+            }
+            #navgroup {text-align:center;}
+            #navgroup div {display:inline-block;}
+        </style>
+    </head>
+    <body>
+        <div  data-role="page" class="grdiv" id="mainserch">
+            <div id="headerquery1" data-theme="a" data-role="header" >
+                <h3 id="headingtxt">
+                </h3>
+                <a   id="btnLogout"  class="btnborder" >Logout</a>
+                <a href="#" id="configinit"  data-icon="gear" data-role="button" data-theme="a" data-mini="true" class="btnborder">Settings</a>
+                <!--                <div id="navgroup" class="ui-btn-right" >
+                                    <div data-role="controlgroup" data-type="horizontal">
+                                        <a href="index.htm" data-role="button" data-theme="a" data-mini="true" class="active menu">Menu</a>
+                                        <a href="specials.htm" data-role="button" data-theme="a" data-mini="true" class="specials">Specials</a>
+                                    </div>
+                                </div>-->
+            </div>
+            <script>
+
+            </script>
+            <div style="margin-top:2%;margin-bottom:2%;margin-right:2%;margin-left:2%; "  data-role="controlgroup" data-theme="a" class="stl">
+                <div data-role="content" style="background-color: #262626" data-mini="true" class="brderBtmclrfirst" >
+                    <div   style="float: left;" data-mini="true">
+                        <!--    <label  >-->
+                        <div style=" font: normal  15px Arial;color:#AAAAAA;"> <label >PatientID</label></div>
+                        <!--                            <button     style="background: white" >PatientID</button>-->
+                        <!--    </label>-->
+                    </div>
+                    <div  style="float:  right;width: 65%;height: 1% ">
+                        <input type="text" data-mini="true"  id="patidtxt" />
+                    </div>
+                </div>
+                <div data-role="content" style="background-color: #262626" data-mini="true" class="brderBtmclr">
+                    <div   style="float: left;" data-mini="true">
+                        <!--    <label  >-->
+                        <label style=" font:normal 15px helvetica;color:#AAAAAA;">Name</label>
+                        <!--                            <button     style="background: white" >PatientID</button>-->
+                        <!--    </label>-->
+                    </div>
+                    <div  style="float: right;width: 65%;height: 1% ">
+                        <input type="text" data-mini="true"  id="patnametxt" />
+                    </div>
+                </div>
+                <div data-role="content" style="background-color: #262626" data-mini="true" class="brderBtmclr">
+                    <div   style="float: left;" data-mini="true">
+                        <!--    <label  >-->
+                        <label style=" font:normal 15px helvetica;color:#AAAAAA;">Acc-No</label>
+                        <!--                            <button     style="background: white" >PatientID</button>-->
+                        <!--    </label>-->
+                    </div>
+                    <div  style="float: right;width: 65%;height: 1% ">
+                        <input type="text" data-mini="true"  id="accnotxt" />
+                    </div>
+                </div>
+                <div data-role="content" style="background-color: #262626" data-mini="true" class="brderBtmclr">
+                    <div style="float: left;">
+                        <!--    <label  >-->
+                        <label style=" font:normal 15px helvetica;color:#AAAAAA;">Modality</label>
+                        <!--                            <button    id="rdoOption2" >PatientID</button>-->
+                        <!--    </label>-->
+                    </div>
+                    <div  style="float: right;width: 65% ">
+                        <a id="modalitylink"   href="#modalitypage" data-transition="slideup" data-mini="true" style=" font: normal  15px Arial;color:#AAAAAA;"> All
+                        </a>
+                    </div>
+                </div>
+                <div data-role="content" style="background-color: #262626" data-mini="true" class="brderBtmclr" >
+                    <!--                        <input type="date" data-mini="true"  id="birthdatetxt" placeholder="DD/MM/YYYY" />-->
+                    <div data-role="content" style="display: none">
+                        <label for="demo">Demo</label>
+                        <label  id="demo" class="changes">
+                        </label>
+                    </div>
+                    <div data-role="fieldcontain" id="demo_default" class="demos" >
+                        <label  for="test_default"  style="font: normal 15px helvetica;color:#AAAAAA;float: left;">Birth</label>
+                        <input type="date" name="test_default" id="test_default" data-mini="true" style="float: right;width: 65% " />
+                    </div>
+                </div>
+                <!--                </div>-->
+                <div data-role="content" style="background-color: #262626" data-mini="true" class="brderBtmclrend">
+                    <div style="float: left;border-color: #262626">
+                        <!--    <label  >-->
+                        <label style="font: normal 15px helvetica;color:#AAAAAA;">Study Date</label>
+                        <!--                            <button    id="rdoOption2" >PatientID</button>-->
+                        <!--    </label>-->
+                    </div>
+                    <div  style="float: right;width: 65%">
+                        <a id="studydatetxt" href="#studydatepage" style="font: normal 15px helvetica;color:#AAAAAA;">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--            //footer-->
+            <div data-role="footer" class="ui-bar" data-position="fixed" data-id="myFooter">
+                <div id="navgroup" style="float: left" >
+                    <div data-role="controlgroup" data-type="horizontal" style="border: solid #AAAAAA;margin-right:30px;">
+                        <a href="#Quicksearchpage" id="qksearch" data-icon="search" data-role="button" data-theme="a" data-mini="true" class="active menu">Quick</a>
+                    </div>
+                </div>
+                <div id="navgroup"  style="float: right">
+                    <div data-role="controlgroup" data-type="horizontal" style="border: solid #AAAAAA;margin-right:30px;">
+                        <a href="#" id="queryBtn" data-icon="search" data-rel="external" data-role="button" data-theme="a" data-mini="true"  class="feedback">Search</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div data-role="page" id="modalitypage" class="grdiv">
+            <div id="headertxt" data-theme="a" data-role="header"  data-mini="true" >
+                <h3>
+                    Modality
+                </h3>
+                <a class="btnborder" href="#mainserch" data-transition="slideup"  data-mini="true">Back</a>
+                <a class="btnborder"  href="#mainserch"  data-inline="false" id="modalityselect"  data-mini="true" >Done</a>
+            </div>
+            <div data-role="content" id="content" data-theme="a">
+                <!--        <a id="createBtn" data-role="button" onclick="createCheckboxes()">Create checkbox list from array</a>-->
+                <!--                <a id="showBtn" data-role="button" onclick="showSelectedNames()" style="visibility:hidden">Alert selected names</a>     -->
+            </div><!-- /content -->
+        </div>
+        <div data-role="page" id="studydatepage" class="grdiv">
+            <div  data-theme="a" data-role="header"  data-mini="true">
+                <h3>
+                    Study Date
+                </h3>
+                <a  class="btnborder" href="#mainserch" data-transition="slideup"  data-mini="true" >Back</a>
+                <a  class="btnborder"  id="searchdateselect"  data-inline="false"  data-mini="true" href="#mainserch" >Done</a>
+            </div>
+            <div data-role="content" id="studydatecheck" data-theme="a">
+                <fieldset data-role="controlgroup" id="radioField">
+                    <!--                    <legend>Choose a pet:</legend>-->
+                    <input type="radio" data-theme="a" name="radio-choice-1" id="radio-choice-0" checked="checked"  value="0"  />
+                    <label for="radio-choice-0">Any Date</label>
+                    <input type="radio" data-theme="a" name="radio-choice-1" id="radio-choice-1"  value="1"/>
+                    <label for="radio-choice-1">Today</label>
+                    <input type="radio" data-theme="a" name="radio-choice-1" id="radio-choice-2" value="2"/>
+                    <label for="radio-choice-2">Today AM</label>
+                    <input type="radio" data-theme="a" name="radio-choice-1" id="radio-choice-3" value="3"/>
+                    <label for="radio-choice-3">Today PM</label>
+                    <input type="radio" data-theme="a" name="radio-choice-1" id="radio-choice-4" value="4"/>
+                    <label for="radio-choice-4">Last 1 Hour</label>
+                    <input type="radio" data-theme="a" name="radio-choice-1" id="radio-choice-5" value="5"/>
+                    <label for="radio-choice-5">Last 4 Hour</label>
+                    <input type="radio" data-theme="a" name="radio-choice-1" id="radio-choice-6" value="6"/>
+                    <label for="radio-choice-6">Yesterday</label>
+                    <input type="radio" data-theme="a" name="radio-choice-1" id="radio-choice-7" value="7"/>
+                    <label for="radio-choice-7">Last Week</label>
+                    <input type="radio" data-theme="a" name="radio-choice-1" id="radio-choice-8" value="8"/>
+                    <label for="radio-choice-8">Last Month</label>
+                    <input type="radio" data-theme="a" name="radio-choice-1" id="customv" value="custom"/>
+                    <label for="customv">Custom</label>
+                    <div data-role="content" id="datepickerstudy" style="display: none" >
+                        <div data-role="fieldcontain" style="display: none">
+                            <label for="demoa">Demo</label>
+                            <label  id="demoa" class="changes">
+                            </label>
+                        </div>
+                        <div data-role="fieldcontain" id="demoa_defaulta" class="demosa">
+                            <label for="test_default">From:</label>
+                            <input type="text" name="test_defaulta" id="test_defaulta" />
+                        </div>
+                        <div data-role="fieldcontain" style="display: none">
+                            <label for="demo">Demo</label>
+                            <label  id="demo1" class="changes">
+                            </label>
+                        </div>
+                        <div data-role="fieldcontain" id="demo1_default1" class="demos1">
+                            <label for="test_default">To:</label>
+                            <input type="text" name="test_default1" id="test_default1" />
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div data-role="page" id="Quicksearchpage" class="grdiv">
+            <div id="headertxt" data-theme="a" data-role="header" >
+                <h3 >
+                    Quick Search
+                </h3>
+                <a class="btnborder" href="#mainserch" data-transition="slideup"  data-mini="true">Back</a>
+                <!--                <a class="button"  href="#mainserch"  data-inline="false"   ></a>-->
+            </div>
+            <div data-role="content" align="center" >
+                <div id="quickSearchDiv" data-role="controlgroup" data-theme="a">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

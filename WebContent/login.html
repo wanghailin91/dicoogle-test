@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>iGDWebDicom</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="apple-touch-icon" href="i-ovm.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="touch-icon-ipad.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="touch-icon-iphone-retina.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="touch-icon-ipad-retina.png" />
+        <link rel="icon" href="css/images/favicon.ico" />
+        <link rel="stylesheet" href="css/jquery.mobile-1.1.1.min.css" />
+        <style type="text/css">
+            .inp {
+                background-image:none;
+                padding:.4em;
+                margin:.5em 0;
+                line-height:1.4;
+                font-size:14px;
+                display:block;
+                width:100%;
+                outline:0;
+                -moz-border-radius:.6em;
+                -webkit-border-radius:.6em;
+                border-radius:.6em;
+                -webkit-box-sizing:border-box;
+                -moz-box-sizing:border-box;
+                -ms-box-sizing:border-box;
+                box-sizing:border-box;
+                border:1px solid #aaa;
+                color:#333;
+                text-shadow:0 1px 0 #fff;
+                background:#f9f9f9;
+                background-image:-webkit-gradient(linear,left top,left bottom,from(#f9f9f9),to(#eee));
+                background-image:-webkit-linear-gradient(#f9f9f9,#eee);
+                background-image:-moz-linear-gradient(#f9f9f9,#eee);
+                background-image:-ms-linear-gradient(#f9f9f9,#eee);
+                background-image:-o-linear-gradient(#f9f9f9,#eee);
+                background-image:linear-gradient(#f9f9f9,#eee);
+
+            }
+
+            .btn {
+                -moz-box-shadow:inset 1px -1px 1px 0px #1a1a1a;
+                -webkit-box-shadow:inset 1px -1px 1px 0px #1a1a1a;
+                box-shadow:inset 1px -1px 1px 0px #1a1a1a;
+                background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #383838), color-stop(1, #141114) );
+                background:-moz-linear-gradient( center top, #383838 5%, #141114 100% );
+                filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#383838', endColorstr='#141114');
+                background-color:#383838;
+                -moz-border-radius:10px;
+                -webkit-border-radius:10px;
+                border-radius:10px;
+                border:1px solid #000;
+                display:inline-block;
+                color:#ffffff;
+                font-family: Georgia, "Times New Roman", Times, serif;
+                font-size:18px;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                font-weight: bold;
+                text-align: center;
+                padding:11px 65px;
+                text-decoration:none;
+                text-shadow:0px 0px 0px #0f0c0f;
+                width:100%;
+            }.btn:hover {
+                background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #141114), color-stop(1, #383838) );
+                background:-moz-linear-gradient( center top, #141114 5%, #383838 100% );
+                filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#141114', endColorstr='#383838');
+                background-color:#141114;
+            }.btn:active {
+                position:relative;
+                top:1px;
+            }
+
+            h3{
+                color: #FFF;
+                font-family: Gill Sans, Verdana;
+                font-size: 11px;
+                line-height: 0px;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                font-weight: bold;
+                text-align: center;
+                margin-top: 15%;
+            }
+
+            h2{
+                font-family: Georgia, "Times New Roman", Times, serif;
+                font-size:35px;
+                margin-top: -8px; margin-bottom: 5px;
+                text-align: center;
+                font-weight: normal;
+                color: #FFF;
+            }
+
+            fieldset{
+                border: 0px;
+            }
+
+        </style>
+
+    <body style="background:black;">
+        <div style="width: 100%;" align="center" >
+            <div style="width:100%;margin-top:15%" >
+                <img src="css/images/iovm.svg"  width="200px"  />
+                <form name="login" action="j_security_check" method="POST">
+                    <fieldset >
+                        <input  id="username"  class="inp"  name="j_username" placeholder="user name" type="text" >
+                        <input  id="passwordlogin" class="inp"  name="j_password"  placeholder="password" type="password" />
+                        <input  type="submit" class="btn" name="submit"  value="Login" />
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </body>
+</html> 

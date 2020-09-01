@@ -1,0 +1,150 @@
+<configuration>
+   <users class="java.util.ArrayList">
+      <user>
+         <user-name>user</user-name>
+         <search-params>
+            <buttons class="java.util.ArrayList">
+               <button>
+                  <button-label>Today CT</button-label>
+                  <date-criteria>t</date-criteria>
+                  <modality>CT</modality>
+                  <auto-refresh>0</auto-refresh>
+               </button>
+            </buttons>
+         </search-params>
+         <theme>Dark Hive</theme>
+         <viewer-slider>hide</viewer-slider>
+         <session-timeout>1800</session-timeout>
+      </user>
+      <user>
+         <user-name>admin</user-name>
+         <search-params>
+            <buttons class="java.util.ArrayList">
+               <button>
+                  <button-label>Today CT</button-label>
+                  <date-criteria>t</date-criteria>
+                  <modality>CT</modality>
+                  <auto-refresh>0</auto-refresh>
+               </button>
+               <button>
+                  <button-label>All CR</button-label>
+                  <modality>CR</modality>
+                  <auto-refresh>0</auto-refresh>
+               </button>
+               <button>
+                  <button-label>All US</button-label>
+                  <modality>US</modality>
+                  <auto-refresh>0</auto-refresh>
+               </button>
+               <button>
+                  <button-label>All CT</button-label>
+                  <modality>CT</modality>
+                  <auto-refresh>0</auto-refresh>
+               </button>
+               <button>
+                  <button-label>Today CT</button-label>
+                  <date-criteria>t</date-criteria>
+                  <modality>CT</modality>
+                  <auto-refresh>0</auto-refresh>
+               </button>
+               <button>
+                  <button-label>Today CR</button-label>
+                  <date-criteria>t</date-criteria>
+                  <modality>CR</modality>
+                  <auto-refresh>0</auto-refresh>
+               </button>
+               <button>
+                  <button-label>Today MR</button-label>
+                  <date-criteria>t</date-criteria>
+                  <modality>MR</modality>
+                  <auto-refresh>0</auto-refresh>
+               </button>
+               <button>
+                  <button-label>AM CT</button-label>
+                  <date-criteria>t</date-criteria>
+                  <time-criteria>000000-120000</time-criteria>
+                  <modality>CT</modality>
+                  <auto-refresh>0</auto-refresh>
+               </button>
+               <button>
+                  <button-label>AM CR</button-label>
+                  <date-criteria>t</date-criteria>
+                  <time-criteria>000000-120000</time-criteria>
+                  <modality>CR</modality>
+                  <auto-refresh>0</auto-refresh>
+               </button>
+               <button>
+                  <button-label>AM MR</button-label>
+                  <date-criteria>t</date-criteria>
+                  <time-criteria>000000-120000</time-criteria>
+                  <modality>MR</modality>
+                  <auto-refresh>0</auto-refresh>
+               </button>
+               <button>
+                  <button-label>PM MR</button-label>
+                  <date-criteria>t</date-criteria>
+                  <time-criteria>000000-120000</time-criteria>
+                  <modality>MR</modality>
+                  <auto-refresh>0</auto-refresh>
+               </button>
+               <button>
+                  <button-label>PM CR</button-label>
+                  <date-criteria>t</date-criteria>
+                  <time-criteria>000000-120000</time-criteria>
+                  <modality>CR</modality>
+                  <auto-refresh>0</auto-refresh>
+               </button>
+               <button>
+                  <button-label>PM CT</button-label>
+                  <date-criteria>t</date-criteria>
+                  <time-criteria>000000-120000</time-criteria>
+                  <modality>CT</modality>
+                  <auto-refresh>0</auto-refresh>
+               </button>
+               <button>
+                  <button-label>Last week CT</button-label>
+                  <date-criteria>t-7</date-criteria>
+                  <modality>CT</modality>
+                  <auto-refresh>0</auto-refresh>
+               </button>
+            </buttons>
+         </search-params>
+         <theme>Dark Hive</theme>
+         <viewer-slider>hide</viewer-slider>
+         <session-timeout>1800</session-timeout>
+      </user>
+      <user>
+         <user-name>asgar</user-name>
+         <search-params>
+            <buttons class="java.util.ArrayList">
+               <button>
+                  <button-label>Today CT</button-label>
+                  <date-criteria>t</date-criteria>
+                  <modality>CT</modality>
+                  <auto-refresh>0</auto-refresh>
+               </button>
+            </buttons>
+         </search-params>
+         <theme>Dark Hive</theme>
+         <viewer-slider>hide</viewer-slider>
+         <session-timeout>1800</session-timeout>
+      </user>
+   </users>
+   <servers class="java.util.ArrayList">
+      <server>
+         <logicalname>Local PACS</logicalname>
+         <aetitle>ASGARDCM</aetitle>
+         <hostname>localhost</hostname>
+         <port>11112</port>
+         <wadoport>8080</wadoport>
+      </server>
+      <server>
+         <logicalname>Backup</logicalname>
+         <aetitle>BACKUP_PACS</aetitle>
+         <hostname>192.168.1.34</hostname>
+         <port>11112</port>
+         <wadoport>8080</wadoport>
+      </server>
+   </servers>
+   <calling-aet>OVIYAM2</calling-aet>
+</configuration>

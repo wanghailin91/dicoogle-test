@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title></title>
+        <link rel="stylesheet" href="css/jquery.mobile-1.1.1.min.css" />
+        <link rel="icon" href="css/images/favicon.ico" />
+        <link rel="stylesheet" href="css/home.css" />
+        <link type="text/css" href="css/jqm-datebox.min.css" rel="stylesheet" />
+        <link type="text/css" href="css/jquery.mobile.simpledialog.min.css" rel="stylesheet" />
+        <link type="text/css" href="css/demos.css" rel="stylesheet" />
+        <script src="js/JqueryMobile-mini/jquery.min.js"/>
+        <script src="js/Controls/session.js"></script>
+
+        <script src="js/JqueryMobile-mini/jquery.mobile-1.1.1.min.js"></script>
+        <script src="js/Mobile-UI/home.js"></script>
+
+        <script type="text/javascript">
+
+            $(document).ready(function() {
+
+                $('#aetitletxt').val(localStorage.getItem("aetitle"));
+                $('#hosttxt').val(localStorage.getItem("hostname"));
+                $('#porttxt').val(localStorage.getItem("port"));
+                $('#wadotxt').val(localStorage.getItem("wado"));
+                var addConfiguration= function (){
+
+                    if($('#aetitletxt').val()==""||$('#hosttxt').val()==""||$('#porttxt').val()==""||$('#wadotxt').val()==""){
+                        $.mobile.showPageLoadingMsg("a", "Above fields should't be empty", true);
+                    }else{
+                        $.post("config.do", {
+                            "ae":  $('#aetitletxt').val(),
+                            "host":$('#hosttxt').val(),
+                            "port": $('#porttxt').val(),
+                            "wado":$('#wadotxt').val(),
+                            "type":"write"
+                        },function(data) {
+
+                            if(data==="failed"){
+                                $.mobile.showPageLoadingMsg("a", "Update Failed", true);
+                            }else if(data==="updated"){
+                                localStorage.setItem("aetitle",$('#aetitletxt').val());
+                                localStorage.setItem("hostname",$('#hosttxt').val());
+                                localStorage.setItem("port",$('#porttxt').val());
+                                localStorage.setItem("wado",$('#wadotxt').val());
+                                window.location="home.html";
+                            }
+
+                        });
+                    }
+                };
+                var configclr= function (){
+                    $('#aetitletxt').val("");
+                    $('#hosttxt').val("");
+                    $('#porttxt').val("");
+                    $('#wadotxt').val("");
+                }
+                $("#configuration").bind('click', addConfiguration);
+                $("#clearconfig").bind('click', configclr);
+
+
+                var echobtncheck=function(){
+                    $.post("echo.do", {
+                        "ae":  $.trim($('#aetitletxt').val()),
+                        "host":$.trim($('#hosttxt').val()),
+                        "port": $.trim($('#porttxt').val()),
+                        "wado":$.trim($('#wadotxt').val())
+
+                    },function(data) {
+                       // alert(data);
+                        if(data=="true"){
+                        $.mobile.showPageLoadingMsg("a", "Echo Success !", true);
+                        }else{
+                             $.mobile.showPageLoadingMsg("a", "Echo Failed !", true);
+
+                        }
+                    });
+                }
+                 $("#echobtn").bind('click', echobtncheck);
+
+            });
+
+        </script>
+    </head>
+    <body bgcolor="black">
+        <div data-role="page" id="config" style="background: black">
+            <div data-theme="a" data-role="header" data-position="fixed">
+                <h2>
+                    Configuration
+                </h2>
+                <a  class="btnborder"  id="btnbackconfig"  data-rel="back"  >Back</a>
+<!--                <a  class="btnborder"  id="echostatus"    >Echo:</a>-->
+            </div>
+            <div data-role="content">
+                <div >
+                    <fieldset data-role="controlgroup">
+                        <label for="aetitletxt">
+                        </label>
+                        <input name="" id="aetitletxt" placeholder="AE Title" value="" type="text" />
+                    </fieldset>
+                </div>
+                <div >
+                    <fieldset data-role="controlgroup">
+                        <label for="hosttxt">
+                        </label>
+                        <input name="" id="hosttxt" placeholder="Host Name" value="" type="text" />
+                    </fieldset>
+                </div>
+                <div >
+                    <fieldset data-role="controlgroup">
+                        <label for="porttxt">
+                        </label>
+                        <input name="" id="porttxt" placeholder="Port" value="" type="text" />
+                    </fieldset>
+                </div>
+                <div >
+                    <fieldset data-role="controlgroup">
+                        <label for="wadotxt">
+                        </label>
+                        <input name="" id="wadotxt" placeholder="Wado port" value="" type="text" />
+                    </fieldset>
+                </div>
+                <input type="submit" id="configuration"  data-inline="true" data-theme="a" data-icon="plus" data-iconpos="right" value="Add" />
+                <input type="submit" id="clearconfig"  data-inline="true" data-theme="a" data-icon="delete" data-iconpos="right" value="Clear" />
+                <input type="submit" id="echobtn"  data-inline="true" data-theme="a" data-icon="check" data-iconpos="right" value="Echo"  />
+            </div>
+        </div>
+    </body>
+</html>

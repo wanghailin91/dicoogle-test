@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-web>
+<!--    <context-root>/dcmsecurity</context-root>-->
+  <security-domain>java:/jaas/dcm4chee</security-domain>
+<!--  <context-root>/ioviyam2</context-root>-->
+</jboss-web>

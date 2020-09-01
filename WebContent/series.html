@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>iGDWebDicom</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="css/jquery.mobile-1.1.1.min.css" />
+        <link rel="stylesheet" href="css/home.css" />
+        <link rel="icon" href="css/images/favicon.ico" />
+        <link rel="apple-touch-icon" href="i-ovm.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="touch-icon-ipad.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="touch-icon-iphone-retina.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="touch-icon-ipad-retina.png" />
+        <script src="js/JqueryMobile-mini/jquery.min.js"> </script>
+        <script>
+            $(document).bind( 'mobileinit', function(){
+                $.mobile.loadingMessageTheme = 'a';
+                $.mobile.loadingMessageTextVisible = true;
+                $.mobile.loadingMessage = "Loading...";
+            });</script>
+        <script src="js/JqueryMobile-mini/jquery.mobile-1.1.1.min.js"></script>
+        <script src="js/Mobile-UI/home.js"></script>
+        <script src="js/ioviyam/series.js"></script>
+        <style> #btnback{
+                border:2px solid;
+                border-radius:25px;
+                -moz-border-radius:25px; 
+            }</style>
+    </head>
+    <body>
+        <div data-role="page" id="Seriespage" style="background: black" >
+            <div data-theme="a" data-role="header" >
+                <h3 id="headingseries">
+                </h3>
+                <a  class="button"  data-icon="arrow-l"  id="btnback" >Back</a>
+
+            </div>
+            <div id="seriesdiv" data-role="content" class="gd">
+                <ul class="mm" id="serieslist"  data-role="listview" data-divider-theme="a" data-inset="false">
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

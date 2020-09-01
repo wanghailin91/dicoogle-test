@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>iGDWebDicom</title>
+    <link rel="stylesheet" href="css/jquery.mobile-1.1.1.min.css"/>
+    <link rel="stylesheet" href="css/home.css"/>
+    <link type="text/css" href="css/jqm-datebox.min.css" rel="stylesheet"/>
+    <link rel="icon" href="css/images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="i-ovm.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="touch-icon-ipad.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="touch-icon-iphone-retina.png"/>
+    <link rel="apple-touch-icon" sizes="144x144" href="touch-icon-ipad-retina.png"/>
+    <!-- NOTE: Script load order is significant! -->
+    <script src="js/JqueryMobile-mini/jquery.min.js"></script>
+    <script src="js/JqueryMobile-mini/jquery.mobile-1.1.1.min.js"></script>
+    <script src="js/Mobile-UI/home.js"></script>
+    <script src="js/ioviyam/home.js"></script>
+    <script src="js/Controls/date.js"></script>
+    <style>
+        .grdiv {
+            border-bottom: 1px solid #000;
+            background-image: linear-gradient(bottom, rgb(71, 70, 71) 69%);
+            background-image: -o-linear-gradient(bottom, rgb(71, 70, 71) 69%);
+            background-image: -moz-linear-gradient(bottom, rgb(71, 70, 71) 69%);
+            background-image: -webkit-linear-gradient(bottom, rgb(71, 70, 71) 69%);
+            background-image: -ms-linear-gradient(bottom, rgb(71, 70, 71) 69%);
+
+            background-image: -webkit-gradient(
+                    linear,
+                    left bottom,
+                    left top,
+                    color-stop(0.69, rgb(71, 70, 71))
+            );
+
+        }
+    </style>
+</head>
+<body>
+<div data-role="page" id="Quicksearchpage" class="grdiv">
+    <div data-role="content" align="center">
+        <div data-role="collapsible-set" data-mini="true" class="grdiv">
+            <div id="collap" data-role="collapsible" data-collapsed="false" style="display: none">
+                <h3>Quick Search</h3>
+                <div id="quickSearchDiv" data-role="controlgroup" data-theme="a">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+.back {
+       background-image: -webkit-gradient(linear, 0 0, 0 100%,
+	color-stop(0%, #9E9EAD),
+	color-stop(50%, #898998),
+	color-stop(50%, #818191),
+	color-stop(100%, #91939F));
+background-image: -webkit-linear-gradient(top,
+	#9E9EAD 0%,
+	#898998 50%,
+	#818191 50%,
+	#91939F 100%);
+background-image: -moz-linear-gradient(top,
+	#9E9EAD 0%,
+	#898998 50%,
+	#818191 50%,
+	#91939F 100%);
+background-image: -o-linear-gradient(top,
+	#9E9EAD 0%,
+	#898998 50%,
+	#818191 50%,
+	#91939F 100%);
+background-image: -ms-linear-gradient(top,
+	#9E9EAD 0%,
+	#898998 50%,
+	#818191 50%,
+	#91939F 100%);
+background-image: linear-gradient(top,
+	#9E9EAD 0%,
+	#898998 50%,
+	#818191 50%,
+	#91939F 100%);
+}

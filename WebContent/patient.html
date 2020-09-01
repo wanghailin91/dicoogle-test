@@ -1,0 +1,94 @@
+
+<html>
+    <head>
+        <title></title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="css/images/favicon.ico" />
+        <link rel="stylesheet" href="css/home.css" />
+        <link rel="apple-touch-icon" href="i-ovm.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="touch-icon-ipad.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="touch-icon-iphone-retina.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="touch-icon-ipad-retina.png" />
+        <link rel="stylesheet" href="css/jquery.mobile-1.1.1.min.css" />
+        <!--        <link type="text/css" href="css/jqm-datebox.min.css" rel="stylesheet" /> -->
+        <!--        <link type="text/css" href="css/jquery.mobile.simpledialog.min.css" rel="stylesheet" /> 
+                <link type="text/css" href="css/demos.css" rel="stylesheet" />-->
+        <script src="js/JqueryMobile-mini/jquery.min.js"></script>
+         <script>
+            $(document).bind( 'mobileinit', function(){
+               $.mobile.loadingMessageTheme = 'a';
+               $.mobile.loadingMessageTextVisible = true;
+                $.mobile.loadingMessage = "Loading...";
+             });</script>
+        <script src="js/JqueryMobile-mini/jquery.mobile-1.1.1.min.js"></script>
+      
+        <script src="js/Mobile-UI/home.js"></script>
+        <script src="js/ioviyam/patient.js"></script>
+        <script>
+            $(document).bind('mobileinit', function(){
+                $.fn.buttonMarkup.defaults.corners=false;
+            });
+        </script>
+        <style>
+            /*            .ui-icon-custom2{
+                            background-image:url("css/images/invert.png")!important;
+                        }*/
+            .ui-icon-custom2 {
+                background:transparent !important;; /* or none */
+                box-shadow: none !important;
+                background-image:url("css/images/invert.png")!important;
+                /* The following border radius rules will override the circle around your icon */
+                -moz-border-radius: 0px !important;;
+                -webkit-border-radius:0px !important;;
+                border-radius:0px !important;;
+            }
+            /* To fix the size issue override the .ui-icon height */
+            /*            .ui-icon{
+                            width:100px !important;;
+                            height:200px !important;;
+                        }*/
+            .ui-btn-corner-all {
+                -moz-border-radius: 0;
+                -webkit-border-radius: 0;
+                border-radius: 0;
+            }
+            .ui-bar-a .ui-shadow,
+            .ui-bar-b .ui-shadow ,
+            .ui-bar-c .ui-shadow  {
+                -moz-box-shadow: 0px 1px 0                 rgba(255,255,255,.3);
+                -webkit-box-shadow: 0px 1px 0             rgba(255,255,255,.3);
+                box-shadow: 0px 1px 0                     rgba(255,255,255,.3);
+            }
+            #patientback{
+                border:2px solid;
+                border-radius:25px;
+                -moz-border-radius:25px; 
+            }
+            #numbrofstdy1{
+                border:2px solid;
+                border-radius:25px;
+                -moz-border-radius:25px; 
+            }
+        </style>
+    </head>
+      <body>
+        <div data-role="page" id="Patientpage" style="background: black" >
+            <div id="headertxt" data-theme="a" data-role="header" >
+                <h3 id="headingtxt">Study List</h3>
+
+<!--                <a  id="patientback"   data-icon="home" >Home</a>
+                 <a id="numbrofstdy"   > </a>-->
+                
+                <a   id="patientback"   class="btnborder" data-icon="arrow-l" >back</a>
+                <a  id="numbrofstdy1"  class="btnborder"    ><div  id="numbrofstdy" >study</div></a>
+                 
+                 
+            </div>
+            <div id="listviewlayer" data-role="content">
+                <ul  id="listviewuldata"  data-role="listview" data-divider-theme="a" data-inset="false">
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

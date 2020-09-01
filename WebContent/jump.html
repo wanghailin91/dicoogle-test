@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GD WPACS</title>
+<link rel="stylesheet" href="css/jquery.mobile-1.1.1.min.css" />
+<link rel="icon" href="css/images/favicon.ico" />
+<link rel="apple-touch-icon" href="i-ovm.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="touch-icon-ipad.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="touch-icon-ipad-retina.png" />
+<style>
+.ui-icon-custom2 {
+	background: transparent !important;; /* or none */
+	box-shadow: none !important;
+	background-image: url("css/images/invert.png") !important;
+	-moz-border-radius: 0px !important;;
+	-webkit-border-radius: 0px !important;;
+	border-radius: 0px !important;;
+}
+
+.ui-btn-corner-all {
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+}
+
+.ui-bar-a .ui-shadow,.ui-bar-b .ui-shadow,.ui-bar-c .ui-shadow {
+	-moz-box-shadow: 0px 1px 0 rgba(255, 255, 255, .3);
+	-webkit-box-shadow: 0px 1px 0 rgba(255, 255, 255, .3);
+	box-shadow: 0px 1px 0 rgba(255, 255, 255, .3);
+}
+
+#patientback {
+	border: 2px solid;
+	border-radius: 25px;
+	-moz-border-radius: 25px;
+}
+
+#numbrofstdy1 {
+	border: 2px solid;
+	border-radius: 25px;
+	-moz-border-radius: 25px;
+}
+
+body {
+	background-color: black;
+}
+
+h1 {
+	font: bold helvetica;
+	color: #AAAAAA;
+}
+</style>
+<script src="js/JqueryMobile-mini/jquery.min.js"> </script>
+<script>
+	$(document).bind( 'mobileinit', function(){
+        $.mobile.loadingMessageTheme = 'a';
+        $.mobile.loadingMessageTextVisible = true;
+        $.mobile.loadingMessage = "Loading...";
+    });
+</script>
+<script src="js/JqueryMobile-mini/jquery.mobile-1.1.1.min.js"></script>
+<script src="js/Mobile-UI/home.js"></script>
+<script type="text/javascript">
+ 	//获取传入的参数
+ 	function getvalue(name){
+	 	//location.search是从当前URL的?号开始的字符串
+ 	    var str = window.location.search;   
+ 	    if (str.indexOf(name) != -1){           
+ 	        var pos_start=str.indexOf(name)+name.length+1;
+ 	        var pos_end=str.indexOf("&",pos_start);
+ 	        if (pos_end==-1){
+ 	            return str.substring(pos_start);
+ 	        }else{
+ 				return str.substring(pos_start, pos_end);
+ 			}
+ 	    }
+ 	}
+	var searchStr=window.location.search;
+	var searchLength=searchStr.length;
+	var patID = getvalue("patID");//科室编号
+	var patName = getvalue("patName");
+	var studyDate = getvalue("studyDate");
+	var studyDesc = getvalue("studyDesc");
+	var modality = getvalue("modality");//检查类型
+	var totalIns = getvalue("totalIns");
+	var studyUID = getvalue("studyUID");
+	var refPhysician = getvalue("refPhysician");
+	var totalSeries = getvalue("totalSeries");
+	var patGender = getvalue("patGender");
+	var recordNo = getvalue("recordNo");//已删除图像获取的PACS记录号
+	var isReport = getvalue("isReport");////判断是否出报告
+	//会诊平台调阅的图像路径
+	var consultantPath= getvalue("consultantPath");
+	if(patID==null||modality==null){
+		patID=localStorage.getItem("patid");
+		modality=localStorage.getItem("modality");
+	}
+	
+	//先判断是否存在影像
+	$.getJSON('QueryIsExistServlet.do?t='+Math.random(), {
+		'patientID' : patID,
+		'depType' : modality
+	}, function(data) {
+		var surl=data.serverUrl;
+		var durl=data.dicomUrl;
+		var realModality=data.deptype;
+		localStorage.setItem("aetitle",data.aetitle);
+	    localStorage.setItem("hostname",data.hostname);
+	    localStorage.setItem("port",data.port);
+	    localStorage.setItem("wado",data.wado);
+		if (!data.exist) {
+			// stp1.不存在，获取图像并调用本地服务传图
+			// stp2.通过pat_id查询是否存在
+			// stp3.显示加载提示
+			
+// 			var popupDialogId = 'popupDialog';
+// 			$('<div data-role="popup" id="' + popupDialogId + '" data-confirmed="no" data-transition="pop"'+
+// 			  'data-overlay-theme="b" data-theme="b" data-dismissible="false" style="min-width:216px;max-width:500px;"> '+
+// 			  '<div role="main" class="ui-content">'+
+// 			  '<h3 class="ui-title" style="color:#fff /*{a-body-color}*/;text-align:center;margin-bottom:15px">对应病人图像已删除，确定重新下载？</h3>'+
+// 			  '<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b optionConfirm" data-rel="back" '+
+// 			  'style="background: #1784fd;width: 40%;border-radius: 5px;height: 30px;line-height: 30px;padding: 0;font-size: .9em;'+
+// 			  'margin: 0 0 0 12%;font-weight: 100;text-decoration:none">确定</a>'+
+// 			  '<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b optionCancel" data-rel="back" '+
+// 			  'data-transition="flow" style="background: #DBDBDB;width: 33%;border-radius: 5px;height: 30px;'+
+// 			  'line-height: 30px;padding: 0;font-size: .9em;margin: 0 0 0 5%;font-weight: 100;color: #333;text-shadow: none;text-decoration:none">取消</a>'+
+// 			  '</div></div>').appendTo($.mobile.pageContainer);
+// 			  var popupDialogObj = $('#' + popupDialogId);
+// 			  popupDialogObj.trigger('create');
+// 			  popupDialogObj.popup({
+// 				  afterclose: function (event, ui) {
+// 			      popupDialogObj.find(".optionConfirm").first().off('click');
+// 			      var isConfirmed = popupDialogObj.attr('data-confirmed') === 'yes' ? true : false;
+// 			      $(event.target).remove();
+// 			      if (isConfirmed) {
+			    	  $.mobile.showPageLoadingMsg();
+	 				  goCallDownImage(patID,recordNo,isReport,modality,durl,consultantPath,realModality); 
+// 			      }
+// 			    }
+// 			  });
+// 			  popupDialogObj.popup('open');
+// 			  popupDialogObj.find(".optionConfirm").first().on('click', function () {
+// 			    popupDialogObj.attr('data-confirmed', 'yes');
+// 			  });
+		}else{
+			//直接获取影像序列
+			showView(realModality);
+		}
+	});
+
+	
+	//下载图像
+	function goCallDownImage(serial,recordNo,
+							isReport,depType,dcmUrl,consultantPath,realModality) {
+		$.ajax({
+			type : "POST",
+			url : "DownPicServlert.do?t="+Math.random(),
+			dataType : "json",
+			async : true,
+			data : {
+				'serial' : serial,
+				'recordNo' : recordNo,
+				'isReport' : isReport,
+				'depType' : depType,
+				'dcmUrl' : dcmUrl,
+				'consultantPath' :consultantPath
+			},
+			success : function(data) {
+				if (data.down) {
+					// 打开影像序列查看页面
+					showView(realModality);
+				} else {
+					alert("对应病人原图像不存在或下载失败！");
+					$.mobile.hidePageLoadingMsg();
+				}
+			}
+		});
+	}
+	
+	function showView(realModality){
+		//判断是否返回调用，不是则不修改
+		if(searchLength!=0){
+		     localStorage.setItem("studyid",studyUID);
+		     localStorage.setItem("patid",patID);
+		     localStorage.setItem("seriesid",patID);
+		     localStorage.setItem("isex",patGender);
+		     localStorage.setItem("serieLoadArray",patGender);
+		     localStorage.setItem("ipatname",patName);
+		     localStorage.setItem("modality",realModality);
+		     localStorage.setItem("istudydesc",studyDesc);
+		}
+		
+	     //根据内容跳转到序列页面
+	     $.post("study.do", {
+	         "patientID":  localStorage.getItem("patid"),
+	         "patientName":localStorage.getItem("ipatname"),
+	         "Acc-no":localStorage.getItem("localaccno"),
+	         "Birthdate":localStorage.getItem("localbirthdate"),
+	         "Modality": localStorage.getItem("modality"),
+	         "From": localStorage.getItem("localfromdate"),
+	         "To": localStorage.getItem("localtodate"),
+	         "tfrom":localStorage.getItem("localfromtime"),
+	         "tto":localStorage.getItem("localtotime"),
+	         
+	         "ae":localStorage.getItem("aetitle"),
+	         "host":localStorage.getItem("hostname"),
+	         "port":localStorage.getItem("port"),
+	         "wadoport":localStorage.getItem("wado")
+	     },function(data){ 
+	         var i=0;
+	         $('#listviewuldata').html('');
+	         $('#numbrofstdy').html(data.length+"-"+'Records');
+	         $.each(data, function(i, row) {
+	             $('#listviewuldata').append(' <li id=studylist'+i +' data-theme="a"  patid='+row['PatientId']+','
+	                 +row['PatientName']+','+row['thickness']+' '+'studyid='+row['studyid']+ ' '+'isex='+row['sex']
+	                 +','+row['StudyDate']+  ' '+'imodality='+row['Modality']+ ' '+'istudydesc='+row['studydesc']+' >'
+	                 +' <a href='+"#" + " "+ '"data-transition="none">'+'<label style="font: bold  15px helvetica;color:#AAAAAA;">'
+	                 +row['PatientName']+'</label>'+'<br><label style=" font:  14px helvetica;color:#AAAAAA;">'
+	                 +row['StudyDate']+'</label>'+'<br><label style=" font:  14px helvetica;color:#AAAAAA;">'+
+	                 ' '+"("+row['seriesno']+" series)"+
+	                 '</label>'+'<span style="font: bold 13px helvetica !important;" class="ui-li-count">'+
+	                 row['Modality']+'</span>'+'</a>'+'</li>').listview('refresh');
+	         });
+	         i++;
+	         //如果查询为一条记录，直接跳转到显示序列
+	         if(i==1){
+	        	 var patient=--i;
+	        	 localStorage.setItem("patiddata", $('#studylist'+patient).attr('patid'));
+	             localStorage.setItem("studyid", $('#studylist'+patient).attr('studyid'));
+	             localStorage.setItem("isex", $('#studylist'+patient).attr('isex'));
+	             localStorage.setItem("imodality", $('#studylist'+patient).attr('imodality'));
+	             localStorage.setItem("istudydesc", $('#studylist'+patient).attr('istudydesc'));
+	             localStorage.setItem("isBack",false);
+	             window.location='series.html';
+	         }else{
+	             $('#listviewuldata').children('li').on('click', function() {
+		             $(this).addClass($.mobile.activeBtnClass);
+		             var patient=$(this).index();
+		             localStorage.setItem("patiddata", $('#studylist'+patient).attr('patid'));
+		             localStorage.setItem("studyid", $('#studylist'+patient).attr('studyid'));
+		             localStorage.setItem("isex", $('#studylist'+patient).attr('isex'));
+		             localStorage.setItem("imodality", $('#studylist'+patient).attr('imodality'));
+		             localStorage.setItem("istudydesc", $('#studylist'+patient).attr('istudydesc'));
+		             localStorage.setItem("isBack",true);
+		             window.location='series.html';
+		         });
+	         }
+	   
+			 $.mobile.hidePageLoadingMsg();
+	     });
+	 }
+	 </script>
+</head>
+<body>
+	<h1>GD WPACS</h1>
+	<div data-role="page" id="Patientpage" style="background: black">
+		<div id="headertxt" data-theme="a" data-role="header">
+			<h3 id="numbrofstdy">List</h3>
+		</div>
+		<div id="listviewlayer" data-role="content">
+			<ul id="listviewuldata" data-role="listview" data-divider-theme="a"
+				data-inset="false">
+			</ul>
+		</div>
+	</div>
+</body>
+
+</html>

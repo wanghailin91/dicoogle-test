@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+<!-- 		<meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.5, user-scalable=yes"> -->
+        <link rel="icon" href="css/images/favicon.ico" />
+        <title></title>
+        <link rel="stylesheet" href="css/jquery.mobile-1.1.1.min.css" />
+        <link type="text/css" href="css/jqm-datebox.min.css" rel="stylesheet" /> 
+        <link type="text/css" href="css/jquery.mobile.simpledialog.min.css" rel="stylesheet" /> 
+        <link type="text/css" href="css/demos.css" rel="stylesheet" />
+        <link type="text/css" href="css/home.css" rel="stylesheet" />
+        <link type="text/css" rel="stylesheet" href="css/touchslider.css" />
+        <link rel="apple-touch-icon" href="i-ovm.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="touch-icon-ipad.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="touch-icon-iphone-retina.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="touch-icon-ipad-retina.png" />
+        <script src="js/tools/zoomer/jquery-1.js"></script>
+        <script src="js/JqueryMobile-mini/jquery.min.js"></script>
+        <script>
+            $(document).bind( 'mobileinit', function(){
+                $.mobile.loadingMessageTheme = 'a';
+                $.mobile.loadingMessageTextVisible = true;
+                $.mobile.loadingMessage = "Loading...";
+            });
+            function hideAddressBar(){
+                if(document.documentElement.scrollHeight<window.outerHeight/window.devicePixelRatio)
+                    document.documentElement.style.height=(window.outerHeight/window.devicePixelRatio)+'px';
+                setTimeout(window.scrollTo(1,0),0);
+            }
+            window.addEventListener("load",function(){hideAddressBar();});
+            window.addEventListener("orientationchange",function(){hideAddressBar();});
+        </script>
+        <script src="js/JqueryMobile-mini/jquery.mobile-1.1.1.min.js"></script>
+        <script src="js/JqueryMobile-mini/jqm.page.params.js"></script>
+        <script type="text/javascript" src="js/BinFileReader.js"></script>
+        <script type="text/javascript" src="js/dicom/DicomInputStreamReader.js"></script>
+        <script type="text/javascript" src="js/dicom/DicomElement.js"></script>
+        <script type="text/javascript" src="js/dicom/DicomParser.js"></script>
+        <script type="text/javascript" src="js/dicom/LookupTable.js"></script>
+        <script src="js/Mobile-UI/spin.min.js"></script>
+        <script src="js/Controls/toolsbar.js"></script>
+        <script src="js/Controls/dicomviewer.js"></script>
+        <script src="js/Controls/Rastertools.js"></script>
+        <script src="js/Controls/drag.js"></script>
+        <script src="js/ioviyam/viewer.js"></script>
+        <script src="js/Controls/jquery.longclick.js"></script>
+        <script src="js/tools/zoomer/jquery.js"></script>
+        <script src="js/tools/zoomer/hammer.js"></script>
+        <script src="js/tools/zoomer/myLogic.js"></script>
+        <link href="js/tools/zoomer/style.css" rel="stylesheet" type="text/css">
+        <link type="text/css" href="css/viewer.css" rel="stylesheet" />
+        <script src="js/Controls/Rasterhandlers.js"></script>
+        <script src="js/Controls/webviewer.js"></script>
+        <script>
+            $(document).bind("touchmove",function(event){
+                event.preventDefault();
+            });
+            window.addEventListener("load",function() {
+                // Set a timeout.
+                setTimeout(function(){
+                    // Hide the address bar!
+                    window.scrollTo(0, 1);
+                }, 0);
+            });
+            $("#Tbtnclose").attr( "disabled" , "true" );
+        </script>
+        <style>
+            #ivbtnback{
+                border:2px solid;
+                border-radius:25px;
+                -moz-border-radius:25px; 
+            }
+            #popupclick1{
+
+                border:2px solid;
+                border-radius:25px;
+                -moz-border-radius:25px; 
+
+            }
+        </style>
+        <script type="text/javascript" src="js/Controls/touchslider.js"></script>
+    </head>
+    <body>
+        <div data-role="page" id="viewerPage" style="background: black">
+            <div id="headerview"  style="z-index:40;" data-role="header" data-position="inline"  >
+                <!--                <a  class="button" data-icon="arrow-l" id="ivbtnback" >Back</a>
+                                <h3>iOviyam 2.0</h3>
+                                <a id="popupclick1"    href="#popupPanel" data-rel="popup"  data-position-to="window" data-role="button" data-icon="gear" data-iconpos="left" >Tools</a>
+                -->
+                <a  class="button"  data-icon="arrow-l"  id="ivbtnback" >Back</a>
+                <h1 class="ui-title" ></h1>
+                <div class="ui-btn-right" data-role="controlgroup" data-type="horizontal"> 
+                    <!--                     <a href="#" data-role="button" data-icon="plus" data-iconpos="notext"></a>-->
+                    <a  id="popupclick1"    href="#popupPanel" data-rel="popup"  data-position-to="window" data-role="button" data-icon="gear" data-mini="true">Tools</a>
+
+                </div>
+                <div id="popupPanel" data-role="popup" class="toolbarclr" data-shadow="false" data-tolerance="0,0">
+                    <div id="lengthcalc" data-role="content" class="ui-block-a">
+                        <div data-role="content" class="ui-block-a">
+                            <div id="Tbtnwindowlevel" data-role="content" class="Tbtnwindowlevels"   > </div>
+                            <div id="Tbtnzoomdrag" data-role="content" class="Tbtnzoomdrags"  > </div>
+                            <div id="Tbtnrotatel" data-role="content" class="Tbtnrotatels"  > </div>
+                            <div id="Tbtntextovly" data-role="content" class="Tbtntextovlys"  > </div>
+                        </div>
+                        <div data-role="content" class="ui-block-a"> 
+                            <div id="Tbtnline" data-role="content"  class="Tbtnlines" > </div>
+                            <div id="Tbtninvert" data-role="content"  class="Tbtninverts" > </div>
+                            <div id="Tbtnrotater" data-role="content"  class="Tbtnrotaters" > </div>
+                            <div id="Tbtnreset" data-role="content"  class="Tbtnresets"> </div>
+                        </div>
+                        <div class="ui-block-c">
+                            <div id="Tbtncircle" data-role="content"  class="Tbtncircles" > </div>
+                            <div id="Tbtnfliphori" data-role="content" class="Tbtnfliphoris"> </div>
+                            <div id="Tbtnflipver" data-role="content" class="Tbtnflipvers"  > </div>
+                            <div id="Tbtnclose"  data-role="content" class="Tbtnclosegrey" >  </div>
+                        </div> 
+                    </div>
+                </div>
+                <!--                popupPanelmm-->
+                <div id="popupPanelmm" data-role="popup"  data-shadow="false" data-tolerance="0,0"  class="toolbarclr">
+                    <div data-role="content"  class="toolbarclr">
+                        <div class="ui-grid-b">
+                            <div data-role="content" class="ui-block-a">
+                                <div id="btndefault" data-role="content" class="rbtndefault" > </div>
+                                <div id="btnabdomen" data-role="content" class="rbtnabdoman"> </div>
+                            </div>
+                            <div data-role="content" class="ui-block-b"> 
+                                <div id="btnlung" data-role="content"  class="rbtnlungs"> </div>
+                                <div id="btnbrain" data-role="content"  class="rbtnbrain"> </div>
+                            </div>
+                            <div data-role="content" class="ui-block-c">
+                                <div id="btnbone" data-role="content"  class="rbtnbone"> </div>
+                                <div id="btnheadneck" data-role="content" class="rbtnhandn"> </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="tmpimage"      style="display: none;"></div>
+            <div><label id="patNameoly"   class="cover" > </label></div>
+            <div><label id="sexoly"       class="cover" ></label></div>
+            <div><label id="modalityoly"  class="cover" ></label></div>
+            <div><label id="studydateoly" class="cover" ></label> </div>
+            <div><label id="studydesceoly" class="cover" ></label></div>
+            <div><label id="bodypartoly"  class="cover" ></label></div>
+            <div><label id="imageoly"     class="cover" ></label></div>
+            <div><label id="wlwcoly"      class="cover" ></label></div>
+            <div><label id="thicknewwoly" class="cover" ></label></div>
+            <div id="divtools"  style="position: absolute; z-index:40001;"></div>
+            <!--             <div id="arrowdiv" data-role="content" class="arrow"></div>-->
+            <div id="pixelspacingoly"  style="background-color: black;display: none;"></div>
+            <div><label id="resolution"     class="cover"></label></div>
+            <div><label id="seriesdesceoly" class="cover" ></label></div>
+            <canvas id="measure"  style="display: none;z-index:50;position: absolute;" ></canvas>
+            <div id="wrap" style="z-index:1; position:absolute;" >
+                <canvas id="imgcanvas" style="z-index:1;position:absolute;" width="578" height="400" ></canvas>
+            </div>
+            <!--     <div id="carousel" style=" position:absolute;"><ul id="listofuls"></ul></div>-->
+            <canvas id="overlayc"   style="position:absolute;z-index:0;"></canvas>
+            <div id="footerview" style="z-index:50000; "  align="center"   data-position="fixed" >
+                <table width="90%" id="foottable" style="display:none">
+                    <tr>
+                        <td width="10%"  align="center" id="backbtns1"   >
+                            <a style="z-index:500;" data-iconpos="notext" data-theme="c" data-icon="arrow-l" id="backbtns" data-role="button" ></a>
+                        </td>
+                        <td width="90%" align="center" style="z-index:500;" >
+                            <div id="footerSlider">
+                                <input type="range"  style="width:100% !important" name="slider"  id="imgSlider" data-mini="true"/>
+                            </div>
+                        </td>
+                        <td width="10%"  align="center" style="padding-left:20px;" id="nxtbtn1" >
+                            <a  data-iconpos="notext" data-icon="arrow-r" id="nxtbtn" data-theme="c" data-role="button" ></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
